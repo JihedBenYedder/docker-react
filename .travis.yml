@@ -4,7 +4,19 @@ services:
 language: generic 
 
 before_install:
-  - docker build -t ben/docker-react -f Dockerfile.dev .
+  - docker build -t ben/docker-react -f Dockerfile .
 
 script:
   - docker run  ben/docker-react  npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-800051099704"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+        secure: "$AWS_SECRET_KEY"
