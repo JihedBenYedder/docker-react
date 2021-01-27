@@ -6,8 +6,8 @@ language: generic
 before_install:
   - docker build -t ben/docker-react -f Dockerfile .
 
-script:
-  - docker run  ben/docker-react  npm run test
+#script:
+#- docker run  ben/docker-react  npm run test
 
 deploy:
   provider: elasticbeanstalk
